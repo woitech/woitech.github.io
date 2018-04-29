@@ -1,6 +1,8 @@
 $(document).ready(function () {
-	const apiRoot = 'https://glacial-caverns-41118.herokuapp.com/v1/tasks';
-	const trelloApiRoot = 'https://glacial-caverns-41118.herokuapp.com/v1/trello/';
+	const apiRoot = 'https://fathomless-river-85496.herokuapp.com/v1/';
+	const trelloApiRoot = 'https://fathomless-river-85496.herokuapp.com/v1/trello/';
+    //const apiRoot = 'http://localhost:8080/v1/';
+	//const trelloApiRoot = 'http://localhost:8080/v1/trello/';
 	const datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
 	const $tasksContainer = $('[data-tasks-container]');
 	var availableBoards = {};
@@ -55,7 +57,7 @@ $(document).ready(function () {
 	}
 
 	function getAllTasks() {
-		const requestUrl = apiRoot;
+		const requestUrl = apiRoot + 'tasks';
 		$.ajax({
 			url: requestUrl,
 			method: 'GET',
@@ -76,7 +78,7 @@ $(document).ready(function () {
 		var taskContent = parentEl.find('[data-task-content-input]').val();
 		var requestUrl = apiRoot;
 		$.ajax({
-			url: requestUrl,
+			url: requestUrl + 'tasks',
 			method: "PUT",
 			processData: false,
 			contentType: "application/json; charset=utf-8",
@@ -97,7 +99,7 @@ $(document).ready(function () {
 	function handleTaskDeleteRequest() {
 		var parentEl = $(this).parents('[data-task-id]');
 		var taskId = parentEl.attr('data-task-id');
-		var requestUrl = apiRoot;
+		var requestUrl = apiRoot + 'tasks';
 		$.ajax({
 			//url: requestUrl + '/?' + $.param({
 			//	taskId: taskId
@@ -116,7 +118,7 @@ $(document).ready(function () {
 		event.preventDefault();
 		var taskTitle = $(this).find('[name="title"]').val();
 		var taskContent = $(this).find('[name="content"]').val();
-		var requestUrl = apiRoot;
+		var requestUrl = apiRoot + 'tasks';
 		$.ajax({
 			url: requestUrl,
 			method: 'POST',
